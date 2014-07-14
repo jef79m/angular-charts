@@ -92,6 +92,7 @@ angular.module('angularCharts').directive('acChart', [
           innerRadius: 0,
           lineLegend: 'lineEnd',
           lineCurveType: 'cardinal',
+          showNodes: true,
           isAnimate: true
         };
       var totalWidth = element[0].clientWidth;
@@ -426,13 +427,18 @@ angular.module('angularCharts').directive('acChart', [
        * @param  {[type]} key   [description]
        * @return {[type]}       [description]
        */
+        if (config.showNodes) {
+          var rad = 3;
+        } else {
+          var rad = 1;
+        }
         angular.forEach(linedata, function (value, key) {
           var points = svg.selectAll('.circle').data(value.values).enter();
           points.append('circle').attr('cx', function (d) {
             return getX(d.x);
           }).attr('cy', function (d) {
             return y(d.y);
-          }).attr('r', 3).style('fill', getColor(linedata.indexOf(value))).style('stroke', getColor(linedata.indexOf(value))).on('mouseover', function (series) {
+          }).attr('r', rad).style('fill', getColor(linedata.indexOf(value))).style('stroke', getColor(linedata.indexOf(value))).on('mouseover', function (series) {
             return function (d) {
               makeToolTip({
                 index: d.x,
