@@ -83,6 +83,7 @@ angular.module('angularCharts').directive('acChart', function($templateCache, $c
       innerRadius: 0, // Only on pie Charts
       lineLegend: 'lineEnd', // Only on line Charts
       lineCurveType: 'cardinal',
+      showNodes: true, // Only on Line charts
       isAnimate: true
     };
 
@@ -482,6 +483,11 @@ angular.module('angularCharts').directive('acChart', function($templateCache, $c
        * @param  {[type]} key   [description]
        * @return {[type]}       [description]
        */
+      if (config.showNodes) {
+        var rad = 3;
+      } else {
+        var rad = 1;
+      }
       angular.forEach(linedata, function(value, key){
         var points = svg.selectAll('.circle')
           .data(value.values)
@@ -490,7 +496,7 @@ angular.module('angularCharts').directive('acChart', function($templateCache, $c
         points.append("circle")
           .attr("cx", function(d) {return getX(d.x) } )
           .attr("cy", function(d) {return y(d.y)} )
-          .attr("r", 3)
+          .attr("r", rad)
           .style("fill", getColor(linedata.indexOf(value)))
           .style("stroke", getColor(linedata.indexOf(value)))
           .on("mouseover", function(series){ return function(d) {
