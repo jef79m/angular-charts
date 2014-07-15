@@ -84,6 +84,8 @@ angular.module('angularCharts').directive('acChart', function($templateCache, $c
       lineLegend: 'lineEnd', // Only on line Charts
       lineCurveType: 'cardinal',
       showNodes: true, // Only on Line charts
+      projectionPeriod: 0, // only on line charts
+      projectionColor: 'mistyRose',
       isAnimate: true
     };
 
@@ -411,7 +413,11 @@ angular.module('angularCharts').directive('acChart', function($templateCache, $c
       })
 
       var yMaxPoints = d3.max(points.map(function(d){ return d.y.length; }));
-      scope.yMaxData = yMaxPoints;
+      if (config.projectionPeriod > 0) {
+        scope.yMaxData = yMaxPoints + 1;
+      } else {
+        scope.yMaxData = yMaxPoints;
+      }
       series.slice(0, yMaxPoints).forEach(function(value, index) {
         var d = {};
         d.series = value;
@@ -436,6 +442,17 @@ angular.module('angularCharts').directive('acChart', function($templateCache, $c
       var padding = d3.max(yData) * 0.20;
 
       y.domain([d3.min(yData), d3.max(yData) + padding]);
+      
+      if (config.projectionPeriod > 0) {
+        var projectX = getX(linedata[0].values[config.projectionPeriod-1].x);
+        var projectX2 = getX(linedata[0].values[linedata[0].values.length-1].x);
+        svg.append("rect")
+          .attr("x", projectX)
+          .attr("y", 0)
+          .attr("width", projectX2 - projectX)
+          .attr("height", height)
+          .attr("fill", config.projectionColor);
+      }
 
       svg.append("g")
           .attr("class", "x axis")
@@ -488,6 +505,7 @@ angular.module('angularCharts').directive('acChart', function($templateCache, $c
       } else {
         var rad = 1;
       }
+
       angular.forEach(linedata, function(value, key){
         var points = svg.selectAll('.circle')
           .data(value.values)
@@ -947,6 +965,9 @@ angular.module('angularCharts').directive('acChart', function($templateCache, $c
         angular.forEach(series, function(value, key){
           scope.legends.push({color : config.colors[key], title: getBindableTextForLegend(value)});
         });
+        if (config.projectionPeriod > 0) {
+          scope.legends.push({color : config.projectionColor, title: getBindableTextForLegend('Projected Figures')})
+        }
       }
     }
 

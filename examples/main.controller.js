@@ -50,6 +50,8 @@ function MainController($scope, $timeout) {
 			display:true,
 			position:'left'
 		},
+		showNodes:false,
+		projectionPeriod: 0,
 		innerRadius: 0
 	};
 
@@ -61,6 +63,8 @@ function MainController($scope, $timeout) {
 			htmlEnabled: true,
 			position:'right'
 		},
+		showNodes: false,
+		projectionPeriod: 1,
 		lineLegend: 'traditional'
 	}
 }
