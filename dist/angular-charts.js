@@ -94,6 +94,7 @@ angular.module('angularCharts').directive('acChart', [
           lineCurveType: 'cardinal',
           showNodes: true,
           projectionPeriod: 0,
+          projectionColor: 'mistyRose',
           isAnimate: true
         };
       var totalWidth = element[0].clientWidth;
@@ -377,7 +378,11 @@ angular.module('angularCharts').directive('acChart', [
         var yMaxPoints = d3.max(points.map(function (d) {
             return d.y.length;
           }));
-        scope.yMaxData = yMaxPoints;
+        if (config.projectionPeriod > 0) {
+          scope.yMaxData = yMaxPoints + 1;
+        } else {
+          scope.yMaxData = yMaxPoints;
+        }
         series.slice(0, yMaxPoints).forEach(function (value, index) {
           var d = {};
           d.series = value;
@@ -403,7 +408,8 @@ angular.module('angularCharts').directive('acChart', [
         ]);
         if (config.projectionPeriod > 0) {
           var projectX = getX(linedata[0].values[config.projectionPeriod - 1].x);
-          svg.append('rect').attr('x', projectX).attr('y', 0).attr('width', width).attr('height', height).attr('fill', 'mistyRose');
+          var projectX2 = getX(linedata[0].values[linedata[0].values.length - 1].x);
+          svg.append('rect').attr('x', projectX).attr('y', 0).attr('width', projectX2 - projectX).attr('height', height).attr('fill', config.projectionColor);
         }
         svg.append('g').attr('class', 'x axis').attr('transform', 'translate(0,' + height + ')').call(xAxis);
         svg.append('g').attr('class', 'y axis').call(yAxis);
@@ -822,6 +828,12 @@ angular.module('angularCharts').directive('acChart', [
               title: getBindableTextForLegend(value)
             });
           });
+          if (config.projectionPeriod > 0) {
+            scope.legends.push({
+              color: config.projectionColor,
+              title: getBindableTextForLegend('Projected Figures')
+            });
+          }
         }
       }
       var HTML_ENTITY_MAP = {
