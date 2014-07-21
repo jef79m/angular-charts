@@ -915,7 +915,7 @@ angular.module('angularCharts').directive('acChart', [
 (function () {
     // styles.min.css
     var cssText = "" +
-".angular-charts-template .axis path,.angular-charts-template .axis line{fill:none;stroke:#333}.angular-charts-template .ac-title{font-weight:700;font-size:1.2em}.angular-charts-template .ac-chart{float:left;width:75%}.angular-charts-template .ac-line{fill:none;stroke-width:2px}.angular-charts-template table{float:left;max-width:25%;list-style:none;margin:0;padding:0}.angular-charts-template td[ng-bind]{display:inline-block}.angular-charts-template .ac-tooltip{display:block;position:absolute;border:1px solid #333;background-color:#161616;border-radius:5px;padding:5px;color:#fff}.angular-charts-template .ac-info table{margin-top:25px}.angular-charts-template .ac-info table tr td:first-child{font-weight:700;padding-right:10px}";
+".angular-charts-template .axis path,.angular-charts-template .axis line{fill:none;stroke:#333}.angular-charts-template .ac-title{font-weight:700;font-size:1.2em}.angular-charts-template .ac-chart{float:left;width:75%}.angular-charts-template .ac-line{fill:none;stroke-width:2px}.angular-charts-template .ac-legend table{float:left;max-width:25%;list-style:none;margin:0;padding:0;width:25%}.angular-charts-template td[ng-bind]{display:inline-block}.angular-charts-template .ac-tooltip{display:block;position:absolute;border:1px solid #333;background-color:#161616;border-radius:5px;padding:5px;color:#fff}.angular-charts-template .ac-info table{margin-top:25px}.angular-charts-template .ac-info table tr td:first-child{font-weight:700;padding-right:10px}";
     // cssText end
 
     var styleEl = document.createElement("style");
