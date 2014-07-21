@@ -88,6 +88,10 @@ angular.module('angularCharts').directive('acChart', [
             position: 'left',
             htmlEnabled: false
           },
+          info: {
+            display: true,
+            data: {}
+          },
           colors: [],
           innerRadius: 0,
           lineLegend: 'lineEnd',
@@ -911,7 +915,7 @@ angular.module('angularCharts').directive('acChart', [
 (function () {
     // styles.min.css
     var cssText = "" +
-".angular-charts-template .axis path,.angular-charts-template .axis line{fill:none;stroke:#333}.angular-charts-template .ac-title{font-weight:700;font-size:1.2em}.angular-charts-template .ac-chart{float:left;width:75%}.angular-charts-template .ac-line{fill:none;stroke-width:2px}.angular-charts-template table{float:left;max-width:25%;list-style:none;margin:0;padding:0}.angular-charts-template td[ng-bind]{display:inline-block}.angular-charts-template .ac-tooltip{display:block;position:absolute;border:1px solid #333;background-color:#161616;border-radius:5px;padding:5px;color:#fff}";
+".angular-charts-template .axis path,.angular-charts-template .axis line{fill:none;stroke:#333}.angular-charts-template .ac-title{font-weight:700;font-size:1.2em}.angular-charts-template .ac-chart{float:left;width:75%}.angular-charts-template .ac-line{fill:none;stroke-width:2px}.angular-charts-template table{float:left;max-width:25%;list-style:none;margin:0;padding:0}.angular-charts-template td[ng-bind]{display:inline-block}.angular-charts-template .ac-tooltip{display:block;position:absolute;border:1px solid #333;background-color:#161616;border-radius:5px;padding:5px;color:#fff}.angular-charts-template .ac-info table{margin-top:25px}.angular-charts-template .ac-info table tr td:first-child{font-weight:700}";
     // cssText end
 
     var styleEl = document.createElement("style");
@@ -938,5 +942,5 @@ angular.module("angularChartsTemplate_left", []).run(["$templateCache", function
 
 angular.module("angularChartsTemplate_right", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("angularChartsTemplate_right",
-    "<div class=\"angular-charts-template\"><div class=\"ac-title\">{{acConfig.title}}</div><div class=\"ac-chart\"></div><div class=\"ac-legend\" ng-show=\"{{acConfig.legend.display}}\"><table><tr ng-repeat=\"l in legends | limitTo:yMaxData\"><td><div ng-attr-style=\"background:{{l.color}}; height:15px;width:15px;\"></div></td><td ng-bind-html=\"l.title\"></td></tr></table></div></div>");
+    "<div class=\"angular-charts-template\"><div class=\"ac-title\">{{acConfig.title}}</div><div class=\"ac-chart\"></div><div class=\"ac-legend\" ng-show=\"{{acConfig.legend.display}}\"><table><tr ng-repeat=\"l in legends | limitTo:yMaxData\"><td><div ng-attr-style=\"background:{{l.color}}; height:15px;width:15px;\"></div></td><td ng-bind-html=\"l.title\"></td></tr></table></div><div class=\"ac-info\"><table><tr ng-repeat=\"d in acConfig.info.data\"><td>{{ d.title }}</td><td>{{ d.value }}</td></tr></table></div></div>");
 }]);
