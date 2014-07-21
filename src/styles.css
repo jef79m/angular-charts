@@ -22,6 +22,10 @@
   margin: 0px;
   padding: 0px;
 }
+
+.angular-charts-template .ac-legend table {
+  width: 25%;
+ }
 .angular-charts-template td[ng-bind] {
   display: inline-block;
 }
@@ -33,4 +37,13 @@
   border-radius: 5px;
   padding: 5px;
   color: rgb(255, 255, 255);
+}
+
+.angular-charts-template .ac-info table {
+  margin-top: 25px;
+}
+
+.angular-charts-template .ac-info table tr td:first-child {
+  font-weight: bold;
+  padding-right: 10px;
 }

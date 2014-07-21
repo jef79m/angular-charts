@@ -79,6 +79,10 @@ angular.module('angularCharts').directive('acChart', function($templateCache, $c
         position: 'left',
         htmlEnabled: false
       },
+      info: {
+        display: true, // can be either 'left' or 'right'.
+        data: []
+      },
       colors: [],
       innerRadius: 0, // Only on pie Charts
       lineLegend: 'lineEnd', // Only on line Charts

@@ -65,6 +65,14 @@ function MainController($scope, $timeout) {
 		},
 		showNodes: false,
 		projectionPeriod: 1,
-		lineLegend: 'traditional'
+		lineLegend: 'traditional',
+		info: {
+			data: [
+				{title: "Value1", value: "Some Value"},
+				{title: "Value2", value: "Some twopvie"},
+				{title: "Value3", value: "Some threevie"},
+				{title: "Value4", value: "Some foursy"}
+			]
+		}
 	}
 }
