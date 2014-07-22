@@ -426,11 +426,11 @@ angular.module('angularCharts').directive('acChart', function($templateCache, $c
         var d = {};
         d.series = value;
         d.values = points.map(function(point){
-          return point.y.map(function(e) {
+          return point.y.map(function(e, idx) {
             return {
               x : point.x,
               y : e,
-              tooltip : point.tooltip,
+              tooltip: angular.isArray(point.tooltip) ? point.tooltip[idx] : point.tooltip
             }
           })[index] || {x:points[index].x, y :0};
         });

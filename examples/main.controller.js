@@ -29,7 +29,7 @@ function MainController($scope, $timeout) {
 		data : [{
 			x : "Sales",
 			y: [100, 500, 0],
-			tooltip:"this is tooltip"
+			tooltip:["this is tooltip","This too","And me"]
 		},
 		{
 			x : "Income",
