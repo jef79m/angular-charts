@@ -450,10 +450,12 @@ angular.module('angularCharts').directive('acChart', function($templateCache, $c
       if (config.projectionPeriod > 0) {
         var projectX = getX(linedata[0].values[config.projectionPeriod-1].x);
         var projectX2 = getX(linedata[0].values[linedata[0].values.length-1].x);
+        var penultimatex = getX(linedata[0].values[linedata[0].values.length-2].x);
+        var tickwidth = projectX2 - penultimatex;
         svg.append("rect")
-          .attr("x", projectX)
+          .attr("x", projectX  - (tickwidth / 2) )
           .attr("y", 0)
-          .attr("width", projectX2 - projectX)
+          .attr("width", projectX2 - projectX + tickwidth)
           .attr("height", height)
           .attr("fill", config.projectionColor);
       }

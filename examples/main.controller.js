@@ -64,7 +64,7 @@ function MainController($scope, $timeout) {
 			position:'right'
 		},
 		showNodes: false,
-		projectionPeriod: 1,
+		projectionPeriod: 2,
 		lineLegend: 'traditional',
 		info: {
 			data: [
