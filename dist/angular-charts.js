@@ -415,7 +415,7 @@ angular.module('angularCharts').directive('acChart', [
           var projectX2 = getX(linedata[0].values[linedata[0].values.length - 1].x);
           var penultimatex = getX(linedata[0].values[linedata[0].values.length - 2].x);
           var tickwidth = projectX2 - penultimatex;
-          svg.append('rect').attr('x', projectX - tickwidth / 2).attr('y', 0).attr('width', projectX2 - projectX + tickwidth).attr('height', height).attr('fill', config.projectionColor);
+          svg.append('rect').attr('x', projectX).attr('y', 0).attr('width', projectX2 - projectX + tickwidth / 2).attr('height', height).attr('fill', config.projectionColor);
         }
         svg.append('g').attr('class', 'x axis').attr('transform', 'translate(0,' + height + ')').call(xAxis);
         svg.append('g').attr('class', 'y axis').call(yAxis);
