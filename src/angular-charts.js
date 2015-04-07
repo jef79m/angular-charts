@@ -446,16 +446,16 @@ angular.module('angularCharts').directive('acChart', function($templateCache, $c
       var padding = d3.max(yData) * 0.20;
 
       y.domain([d3.min(yData), d3.max(yData) + padding]);
-      
+
       if (config.projectionPeriod > 0) {
         var projectX = getX(linedata[0].values[config.projectionPeriod-1].x);
         var projectX2 = getX(linedata[0].values[linedata[0].values.length-1].x);
         var penultimatex = getX(linedata[0].values[linedata[0].values.length-2].x);
         var tickwidth = projectX2 - penultimatex;
         svg.append("rect")
-          .attr("x", projectX  - (tickwidth / 2) )
+          .attr("x", projectX )
           .attr("y", 0)
-          .attr("width", projectX2 - projectX + tickwidth)
+          .attr("width", projectX2 - projectX + (tickwidth / 2) )
           .attr("height", height)
           .attr("fill", config.projectionColor);
       }
